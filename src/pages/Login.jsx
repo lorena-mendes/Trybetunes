@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import LoginForm from '../Components/LoginForm';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { createUser } from '../services/userAPI';
+// import Loading from '../Components/Loading';
 
 const minimumCharacter = 3;
 
@@ -8,30 +9,70 @@ export default class Login extends Component {
   state = {
     userName: '',
     buttonDisabled: true,
+    loading: false,
+  };
+
+  changeRoute = () => {
+    const { history } = this.props;
+    history.push('/search');
   }
 
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
-    const { userName } = this.setState;
-    if (userName.length >= minimumCharacter) {
-      this.setState({ buttonDisabled: false });
-    } else {
-      this.setState({ buttonDisabled: true });
-    }
+  handleClick = () => {
+    const { userName } = this.state;
+    this.setState({ loading: true });
+    createUser({ name: userName }).then(
+      () => {
+        this.changeRoute();
+      },
+    );
+  }
+
+  handleChangeUserName = (event) => {
+    this.setState({
+      userName: event.target.value,
+    }, () => {
+      const { userName } = this.state;
+      if (userName.length >= minimumCharacter) {
+        this.setState({ buttonDisabled: false });
+      } else {
+        this.setState({ buttonDisabled: true });
+      }
+    });
   }
 
   render() {
-    const { buttonDisabled } = this.setState;
+    const { buttonDisabled, userName, loading } = this.state;
 
     return (
-      <section>
-        <div data-testid="page-login">
-          <LoginForm
-            buttonDisabled={ buttonDisabled }
-            handleChange={ this.handleChange }
+      <section data-testid="page-login">
+        <form>
+          <h2>Login</h2>
+          <input
+            type="text"
+            data-testid="login-name-input"
+            placeholder="Digite seu nome"
+            name="userName"
+            className="login-name-input"
+            onChange={ this.handleChangeUserName }
+            value={ userName }
           />
-        </div>
+          <button
+            type="button"
+            data-testid="login-submit-button"
+            disabled={ buttonDisabled }
+            onClick={ this.handleClick }
+            handleClick={ this.handleClick }
+            loading={ loading }
+          >
+            Entrar
+          </button>
+        </form>
       </section>
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.string,
+  loading: PropTypes.bool,
+}.isRequired;
