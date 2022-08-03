@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
+import Loading from '../Components/Loading';
 // import Loading from '../Components/Loading';
 
 const minimumCharacter = 3;
@@ -43,7 +44,7 @@ export default class Login extends Component {
   render() {
     const { buttonDisabled, userName, loading } = this.state;
 
-    return (
+    return loading ? <Loading /> : (
       <section data-testid="page-login">
         <form>
           <h2>Login</h2>
