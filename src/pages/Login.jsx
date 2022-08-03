@@ -47,7 +47,6 @@ export default class Login extends Component {
     return loading ? <Loading /> : (
       <section data-testid="page-login">
         <form>
-          <h2>Login</h2>
           <input
             type="text"
             data-testid="login-name-input"
