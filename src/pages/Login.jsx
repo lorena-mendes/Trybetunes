@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from '../Components/Loading';
-// import Loading from '../Components/Loading';
 
 const minimumCharacter = 3;
 
@@ -18,14 +17,14 @@ export default class Login extends Component {
     history.push('/search');
   }
 
-  handleClick = () => {
+  handleClickLogin = () => {
     const { userName } = this.state;
-    this.setState({ loading: true });
     createUser({ name: userName }).then(
       () => {
         this.changeRoute();
       },
     );
+    this.setState({ loading: true });
   }
 
   handleChangeUserName = (event) => {
@@ -60,8 +59,8 @@ export default class Login extends Component {
             type="button"
             data-testid="login-submit-button"
             disabled={ buttonDisabled }
-            onClick={ this.handleClick }
-            handleClick={ this.handleClick }
+            onClick={ this.handleClickLogin }
+            handleClick={ this.handleClickLogin }
             loading={ loading }
           >
             Entrar
