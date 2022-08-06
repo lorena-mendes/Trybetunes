@@ -12,6 +12,8 @@ export default class Search extends Component {
     buttonDisabled: true,
     albuns: [],
     loading: false,
+    searchResultName: false,
+    hasResults: false,
   };
 
   handleChangeBandName = (event) => {
@@ -30,7 +32,7 @@ export default class Search extends Component {
   handleClickSearchAlbum = async () => {
     const { bandName } = this.state;
     this.setState({
-      bandName: '',
+      imputBandName: bandName,
       loading: true,
     });
     await searchAlbumsAPI(bandName).then(
@@ -38,13 +40,29 @@ export default class Search extends Component {
         this.setState({
           albuns,
           loading: false,
+          bandName: '',
+          searchResultName: true,
+        }, () => {
+          if (albuns.length === 0) {
+            this.setState({ hasResults: false });
+          } else {
+            this.setState({ hasResults: true });
+          }
         });
       },
     );
   }
 
   render() {
-    const { buttonDisabled, bandName, loading, albuns } = this.state;
+    const {
+      buttonDisabled,
+      bandName,
+      loading,
+      albuns,
+      imputBandName,
+      hasResults,
+      searchResultName,
+    } = this.state;
 
     return loading ? <Loading /> : (
       <div data-testid="page-search">
@@ -66,10 +84,11 @@ export default class Search extends Component {
             Pesquisar
           </button>
         </form>
-        {albuns.map((album) => (<CardAlbuns
-          key={ album.collectionName }
-          album={ album }
-        />))}
+        {searchResultName && (<h2>{`Resultado de álbuns de: ${imputBandName}`}</h2>)}
+        {hasResults
+          ? (
+            albuns.map((a) => (<CardAlbuns key={ a.collectionName } album={ a } />)))
+          : <h2>Nenhum álbum foi encontrado</h2>}
       </div>
     );
   }
