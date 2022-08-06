@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../Components/Header';
+import Loading from '../Components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import CardAlbuns from '../Components/CardAlbuns';
 
 const minimumCharacter = 2;
 
@@ -9,6 +11,7 @@ export default class Search extends Component {
     bandName: '',
     buttonDisabled: true,
     albuns: [],
+    loading: false,
   };
 
   handleChangeBandName = (event) => {
@@ -24,21 +27,26 @@ export default class Search extends Component {
     });
   }
 
-  handleClick = () => {
+  handleClickSearchAlbum = async () => {
     const { bandName } = this.state;
-    this.setState({ bandName: '' });
-    searchAlbumsAPI(bandName).then(
+    this.setState({
+      bandName: '',
+      loading: true,
+    });
+    await searchAlbumsAPI(bandName).then(
       (albuns) => {
         this.setState({
           albuns,
+          loading: false,
         });
       },
     );
   }
 
   render() {
-    const { buttonDisabled, bandName } = this.state;
-    return (
+    const { buttonDisabled, bandName, loading, albuns } = this.state;
+
+    return loading ? <Loading /> : (
       <div data-testid="page-search">
         <Header />
         <form>
@@ -53,11 +61,15 @@ export default class Search extends Component {
             type="button"
             data-testid="search-artist-button"
             disabled={ buttonDisabled }
-            onClick={ this.handleClick }
+            onClick={ this.handleClickSearchAlbum }
           >
             Pesquisar
           </button>
         </form>
+        {albuns.map((album) => (<CardAlbuns
+          key={ album.collectionName }
+          album={ album }
+        />))}
       </div>
     );
   }
