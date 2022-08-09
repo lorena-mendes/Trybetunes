@@ -18,12 +18,12 @@ export default class CardAlbuns extends Component {
           key={ album.collectionId }
         >
           <section className="card-container">
-            <h2>{ collectionName }</h2>
-            <h3>{ artistName }</h3>
             <img
               src={ artworkUrl100 }
               alt={ `Imagem do álbum ${album.collectionName}` }
             />
+            <h2>{ collectionName }</h2>
+            <h3>{ artistName }</h3>
           </section>
         </Link>
       </div>

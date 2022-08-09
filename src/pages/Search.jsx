@@ -13,7 +13,7 @@ export default class Search extends Component {
     albuns: [],
     loading: false,
     searchResultName: false,
-    hasResults: false,
+    hasResults: true,
   };
 
   handleChangeBandName = (event) => {
@@ -88,7 +88,7 @@ export default class Search extends Component {
         {hasResults
           ? (
             albuns.map((a) => (<CardAlbuns key={ a.collectionName } album={ a } />)))
-          : <h2>Nenhum álbum foi encontrado</h2>}
+          : 'Nenhum álbum foi encontrado'}
       </div>
     );
   }
