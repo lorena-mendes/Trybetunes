@@ -17,7 +17,6 @@ export default class Album extends Component {
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
     const allMusics = await getMusics(id);
-    console.log(allMusics);
     const musics = allMusics.filter((music) => music.kind);
     const albumCollection = allMusics.find((album) => album);
     this.setState({
@@ -53,7 +52,7 @@ export default class Album extends Component {
             <div key={ music.trackId }>
               <h2>{music.trackName}</h2>
               {/* <img src={ music.artworkUrl60 } alt={ music.trackId } /> */}
-              <MusicCard musics={ music.previewUrl } />
+              <MusicCard music={ music } />
             </div>
           ))
         }
