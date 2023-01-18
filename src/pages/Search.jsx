@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import Loading from '../Components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import CardAlbuns from '../Components/CardAlbuns';
+import '../Css/search.css';
 
 const minimumCharacter = 2;
 
