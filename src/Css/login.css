@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Courgette&display=swap');
+
 body {
   background: url('../../images/login5.jpg');
   background-size: cover;
@@ -13,6 +15,7 @@ body {
 }
 
 .form-login {
+  font-family: 'Carter One', cursive;
   align-items: center;
   background: #992f4d;
   border-radius: 25px;
