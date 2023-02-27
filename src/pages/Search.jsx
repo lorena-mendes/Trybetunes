@@ -12,9 +12,9 @@ export default class Search extends Component {
     bandName: '',
     buttonDisabled: true,
     albuns: [],
-    loading: false,
     searchResultName: false,
     hasResults: true,
+    loading: false,
   };
 
   handleChangeBandName = (event) => {
@@ -34,13 +34,11 @@ export default class Search extends Component {
     const { bandName } = this.state;
     this.setState({
       imputBandName: bandName,
-      loading: true,
     });
     await searchAlbumsAPI(bandName).then(
       (albuns) => {
         this.setState({
           albuns,
-          loading: false,
           bandName: '',
           searchResultName: true,
         }, () => {
@@ -58,38 +56,47 @@ export default class Search extends Component {
     const {
       buttonDisabled,
       bandName,
-      loading,
       albuns,
       imputBandName,
       hasResults,
       searchResultName,
+      loading,
     } = this.state;
 
     return loading ? <Loading /> : (
       <div data-testid="page-search">
         <Header />
-        <form>
-          <input
-            type="text"
-            data-testid="search-artist-input"
-            placeholder="Digite o nome da banda"
-            onChange={ this.handleChangeBandName }
-            value={ bandName }
-          />
-          <button
-            type="button"
-            data-testid="search-artist-button"
-            disabled={ buttonDisabled }
-            onClick={ this.handleClickSearchAlbum }
-          >
-            Pesquisar
-          </button>
-        </form>
-        {searchResultName && (<h2>{`Resultado de álbuns de: ${imputBandName}`}</h2>)}
-        {hasResults
-          ? (
-            albuns.map((a) => (<CardAlbuns key={ a.collectionName } album={ a } />)))
-          : 'Nenhum álbum foi encontrado'}
+        <section className="section-search">
+          <form className="form-search">
+            <h1>BUSCAR BANDA</h1>
+            <input
+              type="text"
+              data-testid="search-artist-input"
+              className="search-artist-input"
+              placeholder="Digite o nome da banda"
+              onChange={ this.handleChangeBandName }
+              value={ bandName }
+              loading={ loading }
+            />
+            <button
+              className="button"
+              type="button"
+              data-testid="search-artist-button"
+              disabled={ buttonDisabled }
+              onClick={ this.handleClickSearchAlbum }
+              loading={ loading }
+            >
+              Pesquisar
+            </button>
+          </form>
+        </section>
+        <section className="section-albuns">
+          {searchResultName && (<h2>{`Resultado de álbuns de: ${imputBandName}`}</h2>)}
+          {hasResults
+            ? (
+              albuns.map((a) => (<CardAlbuns key={ a.collectionName } album={ a } />)))
+            : 'Nenhum álbum foi encontrado'}
+        </section>
       </div>
     );
   }

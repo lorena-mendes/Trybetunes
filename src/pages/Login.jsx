@@ -65,7 +65,6 @@ export default class Login extends Component {
               disabled={ buttonDisabled }
               onClick={ this.handleClickLogin }
               handleClick={ this.handleClickLogin }
-              loading={ loading }
             >
               Entrar
             </button>

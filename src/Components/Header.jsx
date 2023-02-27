@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
@@ -7,7 +8,7 @@ import '../Css/header.css';
 export default class Header extends Component {
   state = {
     userName: '',
-    loading: true,
+    loading: false,
   }
 
   async componentDidMount() {
@@ -21,14 +22,16 @@ export default class Header extends Component {
   render() {
     const { userName, loading } = this.state;
     return loading ? <Loading /> : (
-      <header data-testid="header-component">
-        <p data-testid="header-user-name">{ userName }</p>
-        <Link to="/search" data-testid="link-to-search">Pesquisar</Link>
-        <br />
-        <Link to="/favorites" data-testid="link-to-favorites">Músicas Favoritas</Link>
-        <br />
-        <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
-      </header>
+      <div data-testid="header-component">
+        <section className="section-header">
+          <header className="header-user-name">
+            <h2 data-testid="header-user-name">{userName}</h2>
+            <li><Link to="/search" data-testid="link-to-search">Pesquisar</Link></li>
+            <li><Link to="/favorites" data-testid="link-to-favorites">Músicas Favoritas</Link></li>
+            <li><Link to="/profile" data-testid="link-to-profile">Perfil</Link></li>
+          </header>
+        </section>
+      </div>
     );
   }
 }
