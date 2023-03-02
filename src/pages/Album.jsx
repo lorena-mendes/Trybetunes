@@ -4,6 +4,7 @@ import Header from '../Components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../Components/MusicCard';
 import Loading from '../Components/Loading';
+import '../Css/musicCard.css';
 
 export default class Album extends Component {
   state = {
@@ -47,15 +48,17 @@ export default class Album extends Component {
         <div>
           <h3 data-testid="album-name">{albumName}</h3>
         </div>
-        {
-          allMusicsAlbum.map((music) => (
-            <div key={ music.trackId }>
-              <h2>{music.trackName}</h2>
-              {/* <img src={ music.artworkUrl60 } alt={ music.trackId } /> */}
-              <MusicCard music={ music } />
-            </div>
-          ))
-        }
+        <div className="musics">
+          {
+            allMusicsAlbum.map((music) => (
+              <div key={ music.trackId }>
+                <h2>{music.trackName}</h2>
+                {/* <img src={ music.artworkUrl60 } alt={ music.trackId } /> */}
+                <MusicCard music={ music } />
+              </div>
+            ))
+          }
+        </div>
       </div>
     );
   }

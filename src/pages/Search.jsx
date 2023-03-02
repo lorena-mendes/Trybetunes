@@ -12,7 +12,7 @@ export default class Search extends Component {
     bandName: '',
     buttonDisabled: true,
     albuns: [],
-    searchResultName: false,
+    // searchResultName: false,
     hasResults: true,
     loading: false,
   };
@@ -32,15 +32,15 @@ export default class Search extends Component {
 
   handleClickSearchAlbum = async () => {
     const { bandName } = this.state;
-    this.setState({
-      imputBandName: bandName,
-    });
+    // this.setState({
+    //   imputBandName: bandName,
+    // });
     await searchAlbumsAPI(bandName).then(
       (albuns) => {
         this.setState({
           albuns,
           bandName: '',
-          searchResultName: true,
+          // searchResultName: true,
         }, () => {
           if (albuns.length === 0) {
             this.setState({ hasResults: false });
@@ -57,9 +57,9 @@ export default class Search extends Component {
       buttonDisabled,
       bandName,
       albuns,
-      imputBandName,
+      // imputBandName,
       hasResults,
-      searchResultName,
+      // searchResultName,
       loading,
     } = this.state;
 
@@ -68,7 +68,7 @@ export default class Search extends Component {
         <Header />
         <section className="section-search">
           <form className="form-search">
-            <h1>BUSCAR BANDA</h1>
+            <h3>BUSCAR BANDA</h3>
             <input
               type="text"
               data-testid="search-artist-input"
@@ -89,14 +89,15 @@ export default class Search extends Component {
               Pesquisar
             </button>
           </form>
+          <section className="search-album">
+            {/* {searchResultName && (<h5>{`Resultado de álbuns de: ${imputBandName}`}</h5>)} */}
+            {hasResults
+              ? (
+                albuns.map((a) => (<CardAlbuns key={ a.collectionName } album={ a } />)))
+              : 'Nenhum álbum foi encontrado'}
+          </section>
         </section>
-        <section className="section-albuns">
-          {searchResultName && (<h2>{`Resultado de álbuns de: ${imputBandName}`}</h2>)}
-          {hasResults
-            ? (
-              albuns.map((a) => (<CardAlbuns key={ a.collectionName } album={ a } />)))
-            : 'Nenhum álbum foi encontrado'}
-        </section>
+
       </div>
     );
   }

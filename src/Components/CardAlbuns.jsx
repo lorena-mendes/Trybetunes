@@ -7,27 +7,25 @@ export default class CardAlbuns extends Component {
   render() {
     const { album } = this.props;
     const {
-      artistName,
       artworkUrl100,
       collectionId,
       collectionName } = album;
     return (
       <section className="section-albuns">
-        <div>
-          <Link
-            to={ `/album/${collectionId}` }
-            data-testid={ `link-to-album-${collectionId}` }
-            key={ album.collectionId }
-          >
-            <section className="card-container">
-              <img
-                src={ artworkUrl100 }
-                alt={ `Imagem do álbum ${album.collectionName}` }
-              />
+        <div className="albuns">
+          <img
+            src={ artworkUrl100 }
+            alt={ `Imagem do álbum ${album.collectionName}` }
+          />
+          <div>
+            <Link
+              to={ `/album/${collectionId}` }
+              data-testid={ `link-to-album-${collectionId}` }
+              key={ album.collectionId }
+            >
               <h2>{ collectionName }</h2>
-              <h3>{ artistName }</h3>
-            </section>
-          </Link>
+            </Link>
+          </div>
         </div>
       </section>
     );

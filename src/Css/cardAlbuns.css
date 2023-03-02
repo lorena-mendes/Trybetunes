@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300&display=swap');
+
+.section-albuns {
+  background-color: #a45785;
+  width: 150px;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.76),-2px -2px 10px 0px rgba(167, 167, 167, 0.15);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-bottom: 100px;
+  margin-right: 600px;
+  margin: 20px;
+  text-align: center;
+  align-content: space-around;
+}
+
+.section-albuns :link {
+  font-family: 'Shantell Sans', cursive;
+  font-size: 10px;
+  color: #37193b;
+  text-overflow: ellipsis;
+}
+
+.section-albuns :link:hover {
+  color: black;
+}
