@@ -23,17 +23,17 @@ export default class MusicCard extends Component {
     if (favoriteMusic) {
       this.setState({
         favoriteMusic: false,
-        // loading: true,
+        loading: true,
       });
       await removeSong(music);
     } else {
       this.setState({
         favoriteMusic: true,
-        // loading: true,
+        loading: true,
       });
       await addSong(music);
     }
-    // this.setState({ loading: false });
+    this.setState({ loading: false });
   }
 
   render() {

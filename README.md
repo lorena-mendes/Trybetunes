@@ -1,5 +1,7 @@
 Projeto realizado durante o curso de desenvolvimento web na Trybe.
 
+![Image](images/Grava%C3%A7%C3%A3o%20de%20tela%20de%2012-03-2023%2011_28_05%20(2).gif)
+
 <details>
   <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
 
