@@ -5,9 +5,6 @@
   justify-content: center;
 }
 
-/* .section-album p {
-  font-family: 'Shantell Sans', cursive;
-} */
 
 .music-card {
   font-family: 'Shantell Sans', cursive;
@@ -19,6 +16,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
+}
+
+.music-card h4 {
+  color: white;
+}
+
+.favotire {
+  color: white;
 }
 
 .page-album {
@@ -33,7 +39,7 @@
   margin: 100px;
 }
 
-.page-album h4 {
+.page-album h3 {
   color: white;
 }
 .section-musics {

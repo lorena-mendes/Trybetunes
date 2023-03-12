@@ -43,8 +43,8 @@ export default class Album extends Component {
         <Header />
         <section className="section-album">
           <section data-testid="page-album" className="page-album">
-            <p data-testid="artist-name">{artistName}</p>
-            <p data-testid="album-name">{albumName}</p>
+            <h3 data-testid="artist-name">{artistName}</h3>
+            <h3 data-testid="album-name">{albumName}</h3>
             <img src={ albumImage } alt={ albumName } />
           </section>
           <section className="section-musics">
