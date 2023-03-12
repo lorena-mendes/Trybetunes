@@ -38,34 +38,33 @@ export default class MusicCard extends Component {
 
   render() {
     const { music } = this.props;
-    const { trackName, previewUrl, trackId } = music;
+    const { previewUrl, trackId } = music;
     const { loading, favoriteMusic } = this.state;
 
     return loading ? <Loading /> : (
-      <div className="music-card">
-        <section key={ trackName }>
-          <audio data-testid="audio-component" src={ previewUrl } controls>
-            <track kind="captions" />
-            O seu navegador não suporta o elemento
-            {' '}
-            {' '}
-            <code>audio</code>
-            .
-          </audio>
-          <label
-            htmlFor={ `favorite-${trackId}` }
-            data-testid={ `checkbox-music-${trackId}` }
-          >
-            Favorita
-            <input
-              checked={ favoriteMusic }
-              onChange={ () => this.handleFavorite(music) }
-              id={ `favorite-${trackId}` }
-              type="checkbox"
-            />
-          </label>
-        </section>
-      </div>
+      <section className="music-card">
+        <h4>{music.trackName}</h4>
+        <audio data-testid="audio-component" src={ previewUrl } controls>
+          <track kind="captions" />
+          O seu navegador não suporta o elemento
+          {' '}
+          {' '}
+          <code>audio</code>
+          .
+        </audio>
+        <label
+          htmlFor={ `favorite-${trackId}` }
+          data-testid={ `checkbox-music-${trackId}` }
+        >
+          Favorita
+          <input
+            checked={ favoriteMusic }
+            onChange={ () => this.handleFavorite(music) }
+            id={ `favorite-${trackId}` }
+            type="checkbox"
+          />
+        </label>
+      </section>
     );
   }
 }

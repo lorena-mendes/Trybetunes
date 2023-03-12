@@ -79,3 +79,9 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
 }
+
+.search-album p {
+  color: #37193b;
+  font-family: 'Shantell Sans', cursive;
+  font-size: xx-large;
+}

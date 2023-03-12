@@ -94,7 +94,8 @@ export default class Search extends Component {
             {hasResults
               ? (
                 albuns.map((a) => (<CardAlbuns key={ a.collectionName } album={ a } />)))
-              : 'Nenhum álbum foi encontrado'}
+              // eslint-disable-next-line react/no-unescaped-entities
+              : <p>Nenhum álbum foi encontrado</p>}
           </section>
         </section>
 

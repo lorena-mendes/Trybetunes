@@ -41,24 +41,25 @@ export default class Album extends Component {
     return loading ? <Loading /> : (
       <div>
         <Header />
-        <div data-testid="page-album">
-          <h1 data-testid="artist-name">{artistName}</h1>
-        </div>
-        <img src={ albumImage } alt={ albumName } />
-        <div>
-          <h3 data-testid="album-name">{albumName}</h3>
-        </div>
-        <div className="musics">
-          {
-            allMusicsAlbum.map((music) => (
-              <div key={ music.trackId }>
-                <h2>{music.trackName}</h2>
-                {/* <img src={ music.artworkUrl60 } alt={ music.trackId } /> */}
-                <MusicCard music={ music } />
-              </div>
-            ))
-          }
-        </div>
+        <section className="section-album">
+          <section data-testid="page-album" className="page-album">
+            <p data-testid="artist-name">{artistName}</p>
+            <p data-testid="album-name">{albumName}</p>
+            <img src={ albumImage } alt={ albumName } />
+          </section>
+          <section className="section-musics">
+            <div className="musics">
+              {
+                allMusicsAlbum.map((music) => (
+                  <div key={ music.trackId } className="music-cards">
+                    {/* <h2>{music.trackName}</h2> */}
+                    <MusicCard music={ music } />
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+        </section>
       </div>
     );
   }
