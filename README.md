@@ -5,7 +5,7 @@ Projeto realizado durante o curso de desenvolvimento web na Trybe.
 <details>
   <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
 
-    Foi desenvolvida uma palicação capaz de reproduzir várias músicas das mais variadas bandas e artistas. Essa aplicação será capaz de:
+    Foi desenvolvida uma aplicação capaz de reproduzir várias músicas das mais variadas bandas e artistas. Essa aplicação será capaz de:
 
         * Fazer login;
         * Pesquisar por uma banda ou artista;
